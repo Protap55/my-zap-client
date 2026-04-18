@@ -1,13 +1,13 @@
 import React from "react";
 import reviewQuote from "../../../assets/reviewQuote.png";
 const ReviewCard = ({ review }) => {
-  const { userName, review: comment, user_photoURL } = review;
-  console.log(review);
+  const { userName, review: comment, user_photoURL, user_email } = review;
+
   return (
-    <div>
-      <div className=" bg-base-100 shadow-sm">
+    <div className="py-8">
+      <div className=" bg-primary border-2 rounded-2xl shadow-sm">
         <figure className="px-6 pt-2">
-          <img src={reviewQuote} alt="Shoes" />
+          <img className="bg-secondary" src={reviewQuote} alt="Shoes" />
         </figure>
         <div className="card-body">
           <p>{comment}</p>
@@ -18,7 +18,7 @@ const ReviewCard = ({ review }) => {
             </div>
             <div className="flex flex-col">
               <h2 className="font-bold text-2xl">{userName}</h2>
-              <p>Profession</p>
+              <p>{user_email}</p>
             </div>
           </div>
         </div>
