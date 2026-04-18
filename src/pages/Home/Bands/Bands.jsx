@@ -7,7 +7,7 @@ import "swiper/css/effect-cards";
 import "./styles.css";
 
 // import required modules
-import { Autoplay, EffectCards, Navigation, Pagination } from "swiper/modules";
+import { Autoplay, EffectCards } from "swiper/modules";
 
 // import bands logo
 import casio from "../../../assets/brands/casio.png";
