@@ -6,34 +6,22 @@ const NavBar = () => {
   const links = (
     <>
       <li>
-        <NavLink>
-          <a>Services</a>
-        </NavLink>
+        <NavLink to="/services">Services</NavLink>
       </li>
       <li>
-        <NavLink>
-          <a>Coverage</a>
-        </NavLink>
+        <NavLink to="/coverage">Coverage</NavLink>
       </li>
       <li>
-        <NavLink>
-          <a>About Us</a>
-        </NavLink>
+        <NavLink to="/aboutUs">About Us</NavLink>
       </li>
       <li>
-        <NavLink>
-          <a>Pricing</a>
-        </NavLink>
+        <NavLink to="/pricing">Pricing</NavLink>
       </li>
       <li>
-        <NavLink>
-          <a>Blog</a>
-        </NavLink>
+        <NavLink to="/blog">Blog</NavLink>
       </li>
       <li>
-        <NavLink>
-          <a>Contact</a>
-        </NavLink>
+        <NavLink to="/contact">Contact</NavLink>
       </li>
     </>
   );
