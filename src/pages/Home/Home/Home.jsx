@@ -4,6 +4,7 @@ import Bands from "../Bands/Bands";
 import Works from "../Works/Works";
 import Reviews from "../Reviews/Reviews";
 import FaqSection from "../FaqSection/FaqSection";
+import OurService from "../ourService/ourService";
 
 const reviewPromise = fetch("reviews.json").then((res) => res.json());
 
@@ -13,6 +14,7 @@ const Home = () => {
       <Banner></Banner>
       <div className="py-12">
         <Works></Works>
+        <OurService></OurService>
         <Bands></Bands>
         <Reviews reviewPromise={reviewPromise}></Reviews>
         <FaqSection></FaqSection>

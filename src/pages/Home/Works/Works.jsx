@@ -2,8 +2,8 @@ import React from "react";
 import vehicle from "../../../assets/bookingIcon.png";
 const Works = () => {
   return (
-    <div>
-      <h1 className="font-bold text-3xl py-4">How it Works</h1>
+    <div className="max-w-5xl mx-auto">
+      <h1 className="font-bold text-3xl py-4 text-secondary">How it Works</h1>
       <div className="flex items-center justify-center gap-4">
         <div className="card bg-base-100   shadow-sm">
           <img src={vehicle} alt="vehicle" className="size-16 mx-6 mt-4" />
