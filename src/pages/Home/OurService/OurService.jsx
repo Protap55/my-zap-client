@@ -14,7 +14,7 @@ const OurService = () => {
         </div>
         {/* card */}
         <div className="grid grid-cols-3 gap-4 mt-4">
-          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4   shadow-sm rounded-2xl border-amber-300 border-2">
+          <div className="card bg-base-100 hover:bg-primary hover:scale-105  transition-all duration-200 flex flex-col items-center justify-center p-4   shadow-sm rounded-2xl border-amber-300 border-2">
             <div className="w-24 h-24 pt-4 rounded-full bg-[#f0f0fc] relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center w-12 h-12 items-center">
                 <figure>
@@ -34,7 +34,7 @@ const OurService = () => {
               </p>
             </div>
           </div>
-          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4   shadow-sm rounded-2xl border-amber-300 border-2">
+          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4 hover:scale-105  transition-all duration-200  shadow-sm rounded-2xl border-amber-300 border-2">
             <div className="w-24 h-24 pt-4 rounded-full bg-[#f0f0fc] relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center w-12 h-12 items-center">
                 <figure>
@@ -52,7 +52,7 @@ const OurService = () => {
               </p>
             </div>
           </div>
-          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4   shadow-sm rounded-2xl border-amber-300 border-2">
+          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4  hover:scale-105  transition-all duration-200 shadow-sm rounded-2xl border-amber-300 border-2">
             <div className="w-24 h-24 pt-4 rounded-full bg-[#f0f0fc] relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center w-12 h-12 items-center">
                 <figure>
@@ -70,7 +70,7 @@ const OurService = () => {
               </p>
             </div>
           </div>
-          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4   shadow-sm rounded-2xl border-amber-300 border-2">
+          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4 hover:scale-105  transition-all duration-200  shadow-sm rounded-2xl border-amber-300 border-2">
             <div className="w-24 h-24 pt-4 rounded-full bg-[#f0f0fc] relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center w-12 h-12 items-center">
                 <figure>
@@ -87,7 +87,7 @@ const OurService = () => {
               </p>
             </div>
           </div>
-          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4   shadow-sm rounded-2xl border-amber-300 border-2">
+          <div className="card bg-base-100 hover:bg-primary flex flex-col items-center justify-center p-4 hover:scale-105  transition-all duration-200  shadow-sm rounded-2xl border-amber-300 border-2">
             <div className="w-24 h-24 pt-4 rounded-full bg-[#f0f0fc] relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center w-12 h-12 items-center">
                 <figure>
@@ -106,7 +106,7 @@ const OurService = () => {
               </p>
             </div>
           </div>
-          <div className="card bg-base-100 hover:bg-primary   flex flex-col items-center justify-center p-4   shadow-sm rounded-2xl border-amber-300 border-2">
+          <div className="card bg-base-100 hover:bg-primary   flex flex-col items-center justify-center p-4 hover:scale-105  transition-all duration-200  shadow-sm rounded-2xl border-amber-300 border-2">
             <div className="w-24 h-24 pt-4 rounded-full bg-[#f0f0fc] relative">
               <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center w-12 h-12 items-center">
                 <figure>

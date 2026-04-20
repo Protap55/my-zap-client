@@ -4,7 +4,7 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/effect-cards";
 
-import "./styles.css";
+import "./Bands.css";
 
 // import required modules
 import { Autoplay, EffectCards } from "swiper/modules";
@@ -30,7 +30,7 @@ const Bands = () => {
   ];
 
   return (
-    <div className="p-16 bg-gradient-to-r from-gray-100 to-gray-200 flex items-center justify-center gap-20">
+    <div className="p-16 max-w-5xl mx-auto    flex items-center justify-center gap-20">
       <div>
         <h1 className="text-4xl font-bold text-secondary">
           We've helped thousands of sales teams

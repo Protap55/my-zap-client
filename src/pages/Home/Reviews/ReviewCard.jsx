@@ -5,9 +5,13 @@ const ReviewCard = ({ review }) => {
 
   return (
     <div className="py-8">
-      <div className=" bg-primary border-2 rounded-2xl shadow-sm">
+      <div className=" bg-primary border-2 border-gray-200 rounded-2xl shadow-sm shadow-amber-300">
         <figure className="px-6 pt-2">
-          <img className="bg-secondary" src={reviewQuote} alt="Shoes" />
+          <img
+            className="bg-secondary border rounded-full shadow-amber-300"
+            src={reviewQuote}
+            alt="Shoes"
+          />
         </figure>
         <div className="card-body">
           <p>{comment}</p>
