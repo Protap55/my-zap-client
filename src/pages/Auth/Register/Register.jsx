@@ -3,6 +3,7 @@ import { useForm } from "react-hook-form";
 import { NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
+import axios from "axios";
 
 const Register = () => {
   const {
@@ -15,9 +16,26 @@ const Register = () => {
 
   const handleRegistration = (data) => {
     console.log("after", data);
+
+    const profileImg = data.photo[0];
+
     registerUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+
+        // store the image and get the photo url
+        const formData = new FormData();
+        formData.append("image", profileImg);
+
+        const image_Api_Url = `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_image_host_key} `;
+
+        // axios post
+
+        axios.post(image_Api_Url, formData).then((res) => {
+          console.log("after img upload", res.data.data.url);
+        });
+
+        // update user profile
       })
       .catch((error) => {
         console.log(error);
@@ -35,7 +53,16 @@ const Register = () => {
               <fieldset className="fieldset">
                 {/* photo */}
                 <label className="label">Photo</label>
-                <input type="file" className="input input-bordered w-full" />
+                <input
+                  type="file"
+                  {...register("photo", { required: true })}
+                  className="file-input file-input-warning input-bordered w-full"
+                />
+                {errors.name?.type === "required" && (
+                  <p className="text-red-500 font-semibold">
+                    Image is required
+                  </p>
+                )}
                 {/* name */}
                 <label className="label">Name</label>
                 <input
@@ -96,9 +123,8 @@ const Register = () => {
                 </p>
                 <p className="text-[16px] py-3 text-center">Or</p>
               </fieldset>
-             
             </form>
-             <SocialLogin></SocialLogin>
+            <SocialLogin></SocialLogin>
           </div>
         </div>
       </div>
