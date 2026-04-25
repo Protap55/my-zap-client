@@ -12,34 +12,47 @@ const Register = () => {
     formState: { errors },
   } = useForm();
 
-  const { registerUser } = useAuth();
+  const { registerUser, updateUserProfile } = useAuth();
 
   const handleRegistration = (data) => {
     console.log("after", data);
 
     const profileImg = data.photo[0];
 
-    registerUser(data.email, data.password)
-      .then((res) => {
-        console.log(res.user);
+    registerUser(data.email, data.password).then((registerRes) => {
+      console.log(registerRes.user);
 
-        // store the image and get the photo url
-        const formData = new FormData();
-        formData.append("image", profileImg);
+      // store the image and get the photo url
+      const formData = new FormData();
+      formData.append("image", profileImg);
 
-        const image_Api_Url = `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_image_host_key} `;
+      const image_Api_Url = `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_image_host_key}`;
 
-        // axios post
+      // axios post
 
-        axios.post(image_Api_Url, formData).then((res) => {
-          console.log("after img upload", res.data.data.url);
+      axios
+        .post(image_Api_Url, formData)
+        .then((res) => {
+          console.log("after img upload", res.data.data.display_url);
+
+          // update user profile
+          const userProfile = {
+            displayName: data.name,
+            photoURL: res.data.data.display_url,
+          };
+
+          updateUserProfile(userProfile)
+            .then((result) => {
+              console.log(result);
+            })
+            .catch((error) => {
+              console.log(error);
+            });
+        })
+        .catch((error) => {
+          console.log(error);
         });
-
-        // update user profile
-      })
-      .catch((error) => {
-        console.log(error);
-      });
+    });
   };
 
   return (
@@ -58,7 +71,7 @@ const Register = () => {
                   {...register("photo", { required: true })}
                   className="file-input file-input-warning input-bordered w-full"
                 />
-                {errors.name?.type === "required" && (
+                {errors.photo?.type === "required" && (
                   <p className="text-red-500 font-semibold">
                     Image is required
                   </p>
