@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 
@@ -14,13 +14,15 @@ const Login = () => {
   // sign in user
 
   const { signInUser } = useAuth();
-
+  const navigate = useNavigate();
+  const location = useLocation();
   const handleLogin = (data) => {
     console.log("after login", data);
 
     signInUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
+        navigate(location?.pathname || "/");
       })
       .catch((error) => {
         console.log(error);
@@ -82,7 +84,10 @@ const Login = () => {
                 <p className="text-[16px]">
                   Don’t have any account?{" "}
                   <span className="text-secondary cursor-pointer  hover:transition-all duration-200 hover:scale-105 font-bold  hover:text-[20px]">
-                    <NavLink to="/register"> Register</NavLink>
+                    <NavLink state={location.pathname} to="/register">
+                      {" "}
+                      Register
+                    </NavLink>
                   </span>
                 </p>
                 <p className="text-[16px] py-3 text-center">Or</p>

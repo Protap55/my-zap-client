@@ -1,6 +1,6 @@
 import React from "react";
 import { useForm } from "react-hook-form";
-import { NavLink } from "react-router";
+import { NavLink, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
@@ -13,6 +13,9 @@ const Register = () => {
   } = useForm();
 
   const { registerUser, updateUserProfile } = useAuth();
+  const location = useLocation();
+  const navigate = useNavigate();
+  console.log("social", location);
 
   const handleRegistration = (data) => {
     console.log("after", data);
@@ -42,8 +45,9 @@ const Register = () => {
           };
 
           updateUserProfile(userProfile)
-            .then((result) => {
-              console.log(result);
+            .then(() => {
+              console.log("Profile update");
+              navigate(location.state || "/");
             })
             .catch((error) => {
               console.log(error);

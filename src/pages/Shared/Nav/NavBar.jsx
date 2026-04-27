@@ -75,6 +75,8 @@ const NavBar = () => {
       <div className="navbar-center hidden lg:flex">
         <ul className="menu menu-horizontal px-1">{links}</ul>
       </div>
+
+      {/* buttons */}
       <div className="navbar-end flex items-center  gap-6">
         {user ? (
           <Link onClick={handleLogout} className="btn bg-primary">
@@ -86,8 +88,8 @@ const NavBar = () => {
           </Link>
         )}
         <div className="flex items-center">
-          <Link to="beArider" className="btn bg-primary">
-            Be a rider
+          <Link to="/rider" className="btn bg-primary">
+            Be a Rider
           </Link>
           <div className="h-8 w-8 cursor-pointer rounded-full bg-black flex items-center justify-center">
             <GoArrowUpRight size={26} className="text-primary" />

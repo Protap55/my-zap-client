@@ -1,10 +1,13 @@
-import { createBrowserRouter } from "react-router";
 import RootLayout from "../layout/RootLayout";
+import PrivateRoute from "./PrivateRoute";
 import Home from "../pages/Home/Home/Home";
 import Coverage from "../pages/Coverage/Coverage";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
+
+import { createBrowserRouter } from "react-router";
+import Rider from "../pages/Rider/Rider";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -13,6 +16,15 @@ export const router = createBrowserRouter([
       {
         index: true,
         Component: Home,
+      },
+      {
+        path: "rider",
+        element: (
+          <PrivateRoute>
+            {" "}
+            <Rider></Rider>
+          </PrivateRoute>
+        ),
       },
       {
         path: "coverage",
