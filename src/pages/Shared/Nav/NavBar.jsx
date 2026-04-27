@@ -4,7 +4,7 @@ import { NavLink } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import { Link } from "react-router";
 import { GoArrowUpRight } from "react-icons/go";
-
+import profileImg from "../../../assets/profile.jpg";
 const NavBar = () => {
   const { user, logOut } = useAuth();
 
@@ -79,9 +79,59 @@ const NavBar = () => {
       {/* buttons */}
       <div className="navbar-end flex items-center  gap-6">
         {user ? (
-          <Link onClick={handleLogout} className="btn bg-primary">
-            Sign Out
-          </Link>
+          // profile nav
+          <div className="dropdown dropdown-hover">
+            <Link>
+              {user ? (
+                <img
+                  className="w-12 h-12 border border-amber-300 shadow-amber-500  rounded-full"
+                  src={user.photoURL}
+                  alt=""
+                />
+              ) : (
+                <img
+                  className="w-12 h-12 border border-amber-300 shadow-amber-500  rounded-full"
+                  src={profileImg}
+                  alt=""
+                />
+              )}
+            </Link>
+            <ul
+              tabIndex={0}
+              className="dropdown-content menu bg-base-100 rounded-2xl z-50 w-64 p-4 shadow-lg border border-gray-200"
+            >
+              <div className="flex flex-col items-center text-center gap-2 mb-3">
+                {/* Avatar */}
+                <div className="w-14 h-14 rounded-full bg-gray-200 flex items-center justify-center text-xl font-bold">
+                  {user ? (
+                    <img className="rounded-full" src={user.photoURL} alt="" />
+                  ) : (
+                    <img className="rounded-full" src={profileImg} alt="" />
+                  )}
+                </div>
+
+                {/* Name */}
+                <h4 className="font-semibold text-lg">
+                  {user?.displayName || "User"}
+                </h4>
+
+                {/* Email */}
+                <p className="text-sm text-gray-500 break-all">{user?.email}</p>
+              </div>
+
+              <div className="divider my-1"></div>
+
+              {/* Logout button */}
+              <li>
+                <button
+                  onClick={handleLogout}
+                  className="text-red-500 hover:bg-red-100 rounded-lg"
+                >
+                  🚪 Sign Out
+                </button>
+              </li>
+            </ul>
+          </div>
         ) : (
           <Link to="/login" className="btn ">
             Sign In

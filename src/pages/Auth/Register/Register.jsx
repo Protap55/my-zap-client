@@ -120,12 +120,13 @@ const Register = () => {
                       /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{6,}$/,
                   })}
                   className="input input-bordered w-full"
-                  placeholder="Password"
+                  placeholder="Password "
                 />
 
                 {errors.password?.type === "required" && (
                   <p className="text-red-500 font-semibold">
-                    Password is required
+                    Password must contain uppercase, lowercase, number & special
+                    character (min 6 chars)
                   </p>
                 )}
 

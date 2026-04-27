@@ -8,6 +8,7 @@ import Register from "../pages/Auth/Register/Register";
 
 import { createBrowserRouter } from "react-router";
 import Rider from "../pages/Rider/Rider";
+import ForgatePassword from "../pages/Auth/ForgatePassword/ForgatePassword";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -44,6 +45,10 @@ export const router = createBrowserRouter([
       {
         path: "register",
         Component: Register,
+      },
+      {
+        path: "forgot-password",
+        element: <ForgatePassword></ForgatePassword>,
       },
     ],
   },
