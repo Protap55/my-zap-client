@@ -5,12 +5,13 @@ import { useLocation, useNavigate } from "react-router";
 const SocialLogin = () => {
   const { signInGoogle } = useAuth();
   const location = useLocation();
-
+  console.log("social", location);
   const navigate = useNavigate();
   const handleGoogleSignIn = () => {
     signInGoogle()
       .then((res) => {
         console.log(res.user);
+
         navigate(location.state || "/");
       })
       .catch((error) => {

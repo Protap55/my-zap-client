@@ -9,6 +9,7 @@ import Register from "../pages/Auth/Register/Register";
 import { createBrowserRouter } from "react-router";
 import Rider from "../pages/Rider/Rider";
 import ForgatePassword from "../pages/Auth/ForgatePassword/ForgatePassword";
+import SendParcel from "../pages/SendParcel/SendParcel";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -26,6 +27,15 @@ export const router = createBrowserRouter([
             <Rider></Rider>
           </PrivateRoute>
         ),
+      },
+      {
+        path: "send-Parcel",
+        element: (
+          <PrivateRoute>
+            <SendParcel></SendParcel>
+          </PrivateRoute>
+        ),
+        loader: () => fetch("/serviceCenters.json").then((res) => res.json()),
       },
       {
         path: "coverage",
