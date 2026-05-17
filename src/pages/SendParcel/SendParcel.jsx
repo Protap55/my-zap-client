@@ -2,6 +2,8 @@ import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import { useLoaderData } from "react-router";
 import Swal from "sweetalert2";
+import useAxiosSecure from "../../hooks/useAxiosSecure";
+import useAuth from "../../hooks/useAuth";
 
 const SendParcel = () => {
   const serviceCenters = useLoaderData();
@@ -17,6 +19,10 @@ const SendParcel = () => {
     control,
     formState: { errors },
   } = useForm();
+
+  const { user } = useAuth();
+
+  const axiosSecure = useAxiosSecure();
 
   const senderRegion = useWatch({
     control,
@@ -91,12 +97,22 @@ const SendParcel = () => {
       cancelButtonColor: "#d33",
       confirmButtonText: "I Agree!",
     }).then((result) => {
-      if (result.isConfirmed)
-        Swal.fire({
-          title: "Deleted!",
-          text: "Your file has been deleted.",
-          icon: "success",
-        });
+      if (result.isConfirmed) {
+        // send to database
+        axiosSecure
+          .post("/parcels", data)
+          .then((res) => {
+            console.log("after saving parcel", res.data);
+          })
+          .catch((error) => {
+            console.log("parcel error axios", error);
+          });
+        // Swal.fire({
+        //   title: "Deleted!",
+        //   text: "Your file has been deleted.",
+        //   icon: "success",
+        // });
+      }
     });
   };
   return (
@@ -189,6 +205,7 @@ const SendParcel = () => {
               {...register("senderName", {
                 required: true,
               })}
+              defaultValue={user?.displayName}
               placeholder="Name"
               className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
             />
@@ -204,6 +221,7 @@ const SendParcel = () => {
               {...register("senderEmail", {
                 required: true,
               })}
+              defaultValue={user?.email}
               placeholder="Email"
               className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
             />
