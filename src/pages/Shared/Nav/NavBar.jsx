@@ -21,37 +21,126 @@ const NavBar = () => {
   const links = (
     <>
       <li>
-        <NavLink to="/services">Services</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue bg-primary border px-2 py-1 rounded"
+              : "text-black"
+          }
+          to="/services"
+        >
+          Services
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/coverage">Coverage</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue bg-primary border px-2 py-1 rounded"
+              : "text-black"
+          }
+          to="/coverage"
+        >
+          Coverage
+        </NavLink>
       </li>
       <li>
-        <NavLink to="/aboutUs">About Us</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue bg-primary border px-2 py-1 rounded"
+              : "text-black"
+          }
+          to="/aboutUs"
+        >
+          About Us
+        </NavLink>
       </li>
 
       {user ? (
         <>
           <li>
-            <NavLink to="/send-Parcel">Send Parcel</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue bg-primary border px-2 py-1 rounded"
+                  : "text-black"
+              }
+              to="/send-Parcel"
+            >
+              Send Parcel
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/be-A-Rider">Be a Rider</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue bg-primary border px-2 py-1 rounded"
+                  : "text-black"
+              }
+              to="/be-A-Rider"
+            >
+              Be a Rider
+            </NavLink>
           </li>
         </>
       ) : (
         <>
           <li>
-            <NavLink to="/pricing">Pricing</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue bg-primary border px-2 py-1 rounded"
+                  : "text-black"
+              }
+              to="/pricing"
+            >
+              Pricing
+            </NavLink>
           </li>
           <li>
-            <NavLink to="/blog">Blog</NavLink>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue bg-primary border px-2 py-1 rounded"
+                  : "text-black"
+              }
+              to="/blog"
+            >
+              Blog
+            </NavLink>
+          </li>
+        </>
+      )}
+
+      {user && (
+        <>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue bg-primary border px-2 py-1 rounded"
+                  : "text-black"
+              }
+              to="/dashboard/my-parcels"
+            >
+              My parcels
+            </NavLink>
           </li>
         </>
       )}
 
       <li>
-        <NavLink to="/contact">Contact</NavLink>
+        <NavLink
+          className={({ isActive }) =>
+            isActive
+              ? "text-blue bg-primary border px-2 py-1 rounded"
+              : "text-black"
+          }
+          to="/contact"
+        >
+          Contact
+        </NavLink>
       </li>
     </>
   );

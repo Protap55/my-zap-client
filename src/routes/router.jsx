@@ -10,6 +10,8 @@ import { createBrowserRouter } from "react-router";
 import Rider from "../pages/Rider/Rider";
 import ForgatePassword from "../pages/Auth/ForgatePassword/ForgatePassword";
 import SendParcel from "../pages/SendParcel/SendParcel";
+import DashBoardLayout from "../layout/DashBoardLayout";
+import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -59,6 +61,20 @@ export const router = createBrowserRouter([
       {
         path: "forgot-password",
         element: <ForgatePassword></ForgatePassword>,
+      },
+    ],
+  },
+  {
+    path: "dashboard",
+    element: (
+      <PrivateRoute>
+        <DashBoardLayout></DashBoardLayout>
+      </PrivateRoute>
+    ),
+    children: [
+      {
+        path: "my-parcels",
+        element: <MyParcels></MyParcels>
       },
     ],
   },
