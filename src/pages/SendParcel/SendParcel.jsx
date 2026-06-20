@@ -98,6 +98,7 @@ const SendParcel = () => {
       confirmButtonText: "I Agree!",
     }).then((result) => {
       if (result.isConfirmed) {
+        data.cost = cost;
         // send to database
         axiosSecure
           .post("/parcels", data)
@@ -107,11 +108,6 @@ const SendParcel = () => {
           .catch((error) => {
             console.log("parcel error axios", error);
           });
-        // Swal.fire({
-        //   title: "Deleted!",
-        //   text: "Your file has been deleted.",
-        //   icon: "success",
-        // });
       }
     });
   };

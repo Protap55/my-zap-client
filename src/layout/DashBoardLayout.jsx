@@ -6,7 +6,7 @@ import { MdOutlineProductionQuantityLimits } from "react-icons/md";
 const DashBoardLayout = () => {
   return (
     <div>
-      <div className="drawer lg:drawer-open">
+      <div className="drawer lg:drawer-open max-w-7xl mx-auto">
         <input id="my-drawer-4" type="checkbox" className="drawer-toggle" />
         <div className="drawer-content">
           {/* Navbar */}
