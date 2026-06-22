@@ -12,6 +12,8 @@ import ForgatePassword from "../pages/Auth/ForgatePassword/ForgatePassword";
 import SendParcel from "../pages/SendParcel/SendParcel";
 import DashBoardLayout from "../layout/DashBoardLayout";
 import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
+import Payment from "../pages/Dashboard/Payment/Payment";
+
 export const router = createBrowserRouter([
   {
     path: "/",
@@ -74,7 +76,11 @@ export const router = createBrowserRouter([
     children: [
       {
         path: "my-parcels",
-        element: <MyParcels></MyParcels>
+        element: <MyParcels></MyParcels>,
+      },
+      {
+        path: "payment/:parcelId",
+        element: <Payment></Payment>,
       },
     ],
   },

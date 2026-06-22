@@ -104,6 +104,11 @@ const SendParcel = () => {
           .post("/parcels", data)
           .then((res) => {
             console.log("after saving parcel", res.data);
+            Swal.fire({
+              title: "Your data successfully saved",
+              text: "Thank You",
+              icon: "success",
+            });
           })
           .catch((error) => {
             console.log("parcel error axios", error);
