@@ -5,7 +5,6 @@ import Coverage from "../pages/Coverage/Coverage";
 import AuthLayout from "../layout/AuthLayout";
 import Login from "../pages/Auth/Login/Login";
 import Register from "../pages/Auth/Register/Register";
-
 import { createBrowserRouter } from "react-router";
 import Rider from "../pages/Rider/Rider";
 import ForgatePassword from "../pages/Auth/ForgatePassword/ForgatePassword";
@@ -13,6 +12,8 @@ import SendParcel from "../pages/SendParcel/SendParcel";
 import DashBoardLayout from "../layout/DashBoardLayout";
 import MyParcels from "../pages/Dashboard/MyParcels/MyParcels";
 import Payment from "../pages/Dashboard/Payment/Payment";
+import PaymentCancelled from "../pages/Dashboard/Payment/PaymentCancelled";
+import PaymentSuccess from "../pages/Dashboard/Payment/paymentSuccess";
 
 export const router = createBrowserRouter([
   {
@@ -81,6 +82,14 @@ export const router = createBrowserRouter([
       {
         path: "payment/:parcelId",
         element: <Payment></Payment>,
+      },
+      {
+        path: "payment-success",
+        Component: PaymentSuccess,
+      },
+      {
+        path: "payment-cancelled",
+        Component: PaymentCancelled,
       },
     ],
   },

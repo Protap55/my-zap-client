@@ -7,7 +7,6 @@ import useAuth from "../../hooks/useAuth";
 
 const SendParcel = () => {
   const serviceCenters = useLoaderData();
-
   const centersdublicate = serviceCenters.map((center) => center.region);
 
   const centers = new Set(centersdublicate);
@@ -32,6 +31,8 @@ const SendParcel = () => {
   const districts = serviceCenters.filter(
     (item) => item.region === senderRegion,
   );
+
+  console.log("first", districts);
 
   const detectDistricts = districts.map((item) => item.district);
 
