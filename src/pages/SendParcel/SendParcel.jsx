@@ -8,7 +8,6 @@ import useAuth from "../../hooks/useAuth";
 const SendParcel = () => {
   const serviceCenters = useLoaderData();
   const centersdublicate = serviceCenters.map((center) => center.region);
-
   const centers = new Set(centersdublicate);
   const regions = [...centers];
 
@@ -53,12 +52,8 @@ const SendParcel = () => {
     // same district check
     const isSameDistrict = data.senderDistrict === data.receiverDistrict;
 
-    console.log("same district", isSameDistrict);
-
     // document check
     const isDocument = data.parcelType === "Document";
-
-    console.log("is document", isDocument);
 
     // parcel weight
     const parcelWeight = parseFloat(data.parcelWeight);

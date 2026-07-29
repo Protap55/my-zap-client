@@ -16,7 +16,6 @@ const MyParcels = () => {
     queryKey: ["myParcels", user?.email],
     queryFn: async () => {
       const res = await axiosSecure.get(`/parcels?email=${user?.email}`);
-      console.log("first", parcels);
       return res.data;
     },
   });
