@@ -21,7 +21,7 @@ const PaymentSuccess = () => {
 
   return (
     <div>
-      <h1>Paument done.</h1>
+      <h1>Payment done.</h1>
     </div>
   );
 };

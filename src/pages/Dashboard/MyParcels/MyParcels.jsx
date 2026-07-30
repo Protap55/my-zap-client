@@ -21,7 +21,7 @@ const MyParcels = () => {
   });
 
   const handleParcelDelete = (id) => {
-    console.log("saefirst", id);
+    console.log("id", id);
     Swal.fire({
       title: "Are you sure?",
       text: "You won't be able to revert this!",
@@ -32,23 +32,17 @@ const MyParcels = () => {
       confirmButtonText: "Yes, delete it!",
     }).then((result) => {
       if (result.isConfirmed) {
-        axiosSecure
-          .delete(`/parcels/${id}`)
-          .then((res) => {
-            console.log("success", res.data);
-            if (res.data.deletedCount) {
-              Swal.fire({
-                title: "Deleted!",
-                text: "Your Parcel request has been deleted.",
-                icon: "success",
-              });
-              // refetch data ui
-              refetch();
-            }
-          })
-          .catch((error) => {
-            console.log("parcel error", error);
-          });
+        axiosSecure.delete(`/parcels/${id}`).then((res) => {
+          console.log("delete", res.data);
+          if (res.data.deletedCount) {
+            Swal.fire({
+              title: "Deleted!",
+              text: "Your Parcel request has been deleted.",
+              icon: "success",
+            });
+          }
+          refetch();
+        });
       }
     });
   };
@@ -68,7 +62,7 @@ const MyParcels = () => {
                 <th>Receiver Name</th>
                 <th>Type</th>
                 <th>Parcel Weight (KG)</th>
-                <th>Address Details</th>
+                <th>Details</th>
                 <th>Cost</th>
                 <th>Payment Status</th>
                 <th>Delivery Status</th>
@@ -113,7 +107,7 @@ const MyParcels = () => {
                   <td>{parcel.cost}</td>
                   <td>
                     {parcel.paymentStatus === "paid" ? (
-                      <span>Paid</span>
+                      <span className="bg-green-400">Paid</span>
                     ) : (
                       <span>
                         <Link
@@ -127,11 +121,11 @@ const MyParcels = () => {
                   </td>
 
                   <td>{parcel.deliveryStatus}</td>
-                  <td>
+                  <td className="flex gap-2">
                     <button className="btn btn-soft btn-warning">
                       <FaEdit />
                     </button>
-                    <button className="btn btn-soft btn-accent mx-2">
+                    <button className="btn btn-soft btn-accent">
                       <PiMagnifyingGlassDuotone />
                     </button>
                     <button
