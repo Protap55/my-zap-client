@@ -15,14 +15,14 @@ const Payment = () => {
   });
 
   const handlePayment = async () => {
-    const paymentInfo = {
+    const paymentinfo = {
       cost: parcel.cost,
       parcelName: parcel.parcelName,
       senderEmail: parcel.senderEmail,
       parcelId: parcel._id,
     };
-    const res = await axiosSecure.post("/create-checkout-session", paymentInfo);
-    console.log("handlepayment", res.data);
+    const res = await axiosSecure.post("/create-checkout-session", paymentinfo);
+
     window.location.href = res.data.url;
   };
 
