@@ -71,18 +71,6 @@ const NavBar = () => {
               Send Parcel
             </NavLink>
           </li>
-          <li>
-            <NavLink
-              className={({ isActive }) =>
-                isActive
-                  ? "text-blue bg-primary border px-2 py-1 rounded"
-                  : "text-black"
-              }
-              to="/be-A-Rider"
-            >
-              Be a Rider
-            </NavLink>
-          </li>
         </>
       ) : (
         <>
@@ -177,9 +165,9 @@ const NavBar = () => {
         </div>
 
         {/* Logo */}
-        <Link className="btn btn-ghost text-xl">
+        <span className="btn btn-ghost text-xl">
           <Logo />
-        </Link>
+        </span>
       </div>
 
       {/* CENTER */}

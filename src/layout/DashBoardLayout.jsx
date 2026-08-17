@@ -1,7 +1,8 @@
 import React from "react";
 import { Link, NavLink, Outlet } from "react-router";
 import DashboardLogo from "../Components/Logo/DashboardLogo";
-import { MdOutlineProductionQuantityLimits } from "react-icons/md";
+import { MdWorkHistory } from "react-icons/md";
+import { AiFillProduct } from "react-icons/ai";
 
 const DashBoardLayout = () => {
   return (
@@ -73,12 +74,12 @@ const DashBoardLayout = () => {
                   <span className="is-drawer-close:hidden">Homepage</span>
                 </Link>
               </li>
-
               {/* our dashboard links */}
 
               <li>
                 <NavLink
                   to="/dashboard/my-parcels"
+                  data-tip="My Parcels"
                   className={({ isActive }) =>
                     `${
                       isActive
@@ -86,14 +87,33 @@ const DashBoardLayout = () => {
                         : "text-black"
                     } is-drawer-close:tooltip is-drawer-close:tooltip-right`
                   }
-                  data-tip="Settings"
+                  data-tip=" My Parcels"
                 >
                   {/* my parcels icon */}
-                  <MdOutlineProductionQuantityLimits />
+                  <AiFillProduct />
                   <span className="is-drawer-close:hidden">My Parcels</span>
                 </NavLink>
               </li>
-
+              {/* payment history */}
+              <li>
+                <NavLink
+                  to="/dashboard/payment-history"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "text-blue bg-primary border px-2 py-1 rounded"
+                        : "text-black"
+                    } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                  }
+                  data-tip="Payment History"
+                >
+                  {/* my parcels icon */}
+                  <MdWorkHistory />
+                  <span className="is-drawer-close:hidden">
+                    Payment History
+                  </span>
+                </NavLink>
+              </li>
               {/* List item */}
               <li>
                 <button

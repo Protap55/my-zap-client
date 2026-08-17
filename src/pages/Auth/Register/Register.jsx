@@ -4,6 +4,7 @@ import { NavLink, useLocation, useNavigate } from "react-router";
 import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
 const Register = () => {
   const {
@@ -16,6 +17,7 @@ const Register = () => {
   const location = useLocation();
   const navigate = useNavigate();
   console.log("social", location);
+  const axiosSecure = useAxiosSecure();
 
   const handleRegistration = (data) => {
     console.log("after", data);
@@ -32,16 +34,29 @@ const Register = () => {
       const image_Api_Url = `https://api.imgbb.com/1/upload?expiration=600&key=${import.meta.env.VITE_image_host_key}`;
 
       // axios post
-
       axios
         .post(image_Api_Url, formData)
         .then((res) => {
           console.log("after img upload", res.data.data.display_url);
 
+          const photoURL = res.data.data.display_url;
+
+          // user info
+          const userInfo = {
+            displayName: data.name,
+            email: data.email,
+            photoURL: photoURL,
+          };
+          axiosSecure.post("/users", userInfo).then((res) => {
+            if (res.data.insertedId) {
+              console.log("Created user done");
+            }
+          });
+
           // update user profile
           const userProfile = {
             displayName: data.name,
-            photoURL: res.data.data.display_url,
+            photoURL: photoURL,
           };
 
           updateUserProfile(userProfile)

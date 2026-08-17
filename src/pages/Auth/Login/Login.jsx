@@ -19,7 +19,7 @@ const Login = () => {
     signInUser(data.email, data.password)
       .then((res) => {
         console.log(res.user);
-        navigate(location?.state || "/"); // ✅ fixed
+        navigate(location?.state || "/"); //
       })
       .catch((error) => {
         console.log(error);
@@ -63,7 +63,9 @@ const Login = () => {
                 </Link>
               </div>
 
-              <button className="btn mb-2 hover:transition-all duration-200 hover:scale-105 hover:bg-amber-300 bg-primary rounded-2xl mt-4 w-full">Login</button>
+              <button className="btn mb-2 hover:transition-all duration-200 hover:scale-105 hover:bg-amber-300 bg-primary rounded-2xl mt-4 w-full">
+                Login
+              </button>
 
               <p className="text-[16px]">
                 Don’t have any account?{" "}
