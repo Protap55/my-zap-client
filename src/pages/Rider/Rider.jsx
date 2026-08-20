@@ -4,6 +4,7 @@ import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
 import useAuth from "../../hooks/useAuth";
 import { useLoaderData } from "react-router";
+import agent_pending from "../../assets/agent-pending.png";
 
 const Rider = () => {
   const axiosSecure = useAxiosSecure();
@@ -20,169 +21,261 @@ const Rider = () => {
   const centers = new Set(centersdublicate);
   const regions = [...centers];
 
-  const senderRegion = useWatch({
+  const riderRegion = useWatch({
     control,
-    name: "senderRegion",
+    name: "riderRegion",
   });
 
   const districts = serviceCenters.filter(
-    (item) => item.region === senderRegion,
+    (item) => item.region === riderRegion,
   );
 
   console.log("first", districts);
 
   const detectDistricts = districts.map((item) => item.district);
 
-  const handleRiderApplication = (data) => {};
+  const handleRiderApplication = (data) => {
+    console.log("RIDER DATA:", data);
+    axiosSecure.post("/riders", data).then((res) => {
+      if (res.data.insertedId) {
+        Swal.fire({
+          position: "top-end",
+          icon: "success",
+          title:
+            "Your application has been submitted. We will reach to you in 7 days",
+          showConfirmButton: false,
+          timer: 3500,
+        });
+      }
+    });
+  };
   return (
-    <div>
-      <h1>I am rider</h1>
-      <form onSubmit={handleSubmit(handleRiderApplication)}>
-        {/* sender + receiver */}
-        <div className="grid grid-cols-1 xl:grid-cols-2 gap-6 lg:gap-10 mt-8 lg:mt-10">
-          {/* sender */}
-          <fieldset className="p-4 sm:p-6 text-black border rounded-3xl lg:rounded-4xl">
-            <legend className="text-xl sm:text-2xl">Rider Details</legend>
+    <div className="my-8 card card-body bg-green-50 border-2 border-amber-600 p-4 sm:p-6 lg:p-10 rounded-2xl">
+      {/* Header */}
+      <div>
+        <h1 className="font-bold text-3xl sm:text-4xl text-secondary">
+          Be a Rider
+        </h1>
 
-            {/* sender name */}
-            <label className="label">Sender Name:</label>
+        <p className="text-[16px] mt-2">
+          Enjoy fast, reliable parcel delivery with real-time tracking and zero
+          hassle. From personal packages to business shipments — we deliver on
+          time, every time.
+        </p>
+      </div>
 
-            <input
-              {...register("senderName", {
-                required: true,
-              })}
-              defaultValue={user?.displayName}
-              placeholder="Name"
-              className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
-            />
+      {/* Form + Image */}
+      <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-12 items-start mt-8">
+        {/* LEFT - FORM */}
+        <div className="w-full order-2 lg:order-1 min-w-0">
+          <form onSubmit={handleSubmit(handleRiderApplication)}>
+            <fieldset className="p-4 sm:p-6 text-black border rounded-3xl">
+              <legend className="text-xl sm:text-2xl px-2">
+                Tell us about yourself
+              </legend>
 
-            {errors.senderName && (
-              <p className="text-red-500 mb-3">Sender Name is required</p>
-            )}
+              {/* Rider name */}
+              <label className="label">Your Name:</label>
 
-            {/* sender email */}
-            <label className="label">Sender Email:</label>
+              <input
+                {...register("name", {
+                  required: true,
+                })}
+                placeholder="Name"
+                className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
 
-            <input
-              {...register("senderEmail", {
-                required: true,
-              })}
-              defaultValue={user?.email}
-              placeholder="Email"
-              className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
-            />
+              {errors.name && (
+                <p className="text-red-500 mb-3">Sender Name is required</p>
+              )}
 
-            {errors.senderEmail && (
-              <p className="text-red-500 mb-3">Sender Email is required</p>
-            )}
+              {/* Driving License */}
+              <label className="label">Driving License Number:</label>
 
-            {/* sender address */}
-            <label className="label">Sender Address:</label>
+              <input
+                {...register("drivingLicense", {
+                  required: true,
+                })}
+                placeholder="Driving License Number"
+                className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
 
-            <input
-              {...register("senderAddress", {
-                required: true,
-              })}
-              placeholder="Address"
-              className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
-            />
+              {errors.drivingLicense && (
+                <p className="text-red-500 mb-3">
+                  Driving License Number is required
+                </p>
+              )}
 
-            {errors.senderAddress && (
-              <p className="text-red-500 mb-3">Sender Address is required</p>
-            )}
+              {/* Email */}
+              <label className="label">Email:</label>
 
-            {/* sender phone */}
-            <label className="label">Sender Phone No:</label>
+              <input
+                type="email"
+                {...register("email", {
+                  required: true,
+                })}
+                placeholder="Email"
+                className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
 
-            <input
-              type="tel"
-              {...register("senderPhoneNumber", {
-                required: true,
-              })}
-              placeholder="Phone"
-              className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
-            />
+              {errors.email && (
+                <p className="text-red-500 mb-3">Email is required</p>
+              )}
 
-            {errors.senderPhoneNumber && (
-              <p className="text-red-500 mb-3">
-                Sender Phone Number is required
-              </p>
-            )}
+              {/* Region */}
+              <label className="label">Region:</label>
 
-            {/* sender region */}
-            <label className="label">Sender Region:</label>
-
-            <select
-              {...register("senderRegion", {
-                required: true,
-              })}
-              defaultValue=""
-              className="w-full mb-2 mt-2 text-black border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl p-3"
-            >
-              <option value="" disabled>
-                Sender Region
-              </option>
-
-              {regions.map((r, i) => (
-                <option key={i} value={r}>
-                  {r}
+              <select
+                {...register("riderRegion", {
+                  required: true,
+                })}
+                defaultValue=""
+                className="w-full mb-2 mt-2 text-black border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl p-3"
+              >
+                <option value="" disabled>
+                  Select Region
                 </option>
-              ))}
-            </select>
 
-            {errors.senderRegion && (
-              <p className="text-red-500 mb-3">Sender Region is required</p>
-            )}
+                {regions.map((r, i) => (
+                  <option key={i} value={r}>
+                    {r}
+                  </option>
+                ))}
+              </select>
 
-            {/* sender district */}
-            <label className="label">Sender District:</label>
+              {errors.riderRegion && (
+                <p className="text-red-500 mb-3">Region is required</p>
+              )}
 
-            <select
-              {...register("senderDistrict", {
-                required: true,
-              })}
-              defaultValue=""
-              className="w-full mb-2 mt-2 text-black border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl p-3"
-            >
-              <option value="" disabled>
-                Sender District
-              </option>
+              {/* District */}
+              <label className="label">District:</label>
 
-              {detectDistricts.map((d, i) => (
-                <option key={i} value={d}>
-                  {d}
+              <select
+                {...register("district", {
+                  required: true,
+                })}
+                className="w-full mb-2 mt-2 text-black border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl p-3"
+              >
+                <option value="" disabled>
+                  Select District
                 </option>
-              ))}
-            </select>
 
-            {errors.senderDistrict && (
-              <p className="text-red-500 mb-3">Sender District is required</p>
-            )}
+                {detectDistricts.map((d, i) => (
+                  <option key={i} value={d}>
+                    {d}
+                  </option>
+                ))}
+              </select>
 
-            {/* pickup instruction */}
-            <label className="label mb-2">Pickup Instruction:</label>
+              {errors.district && (
+                <p className="text-red-500 mb-3">District is required</p>
+              )}
 
-            <textarea
-              {...register("pickupInstruction", {
-                required: true,
-              })}
-              placeholder="Pickup Instruction"
-              className="textarea w-full border-2 bg-white border-amber-300 rounded-2xl p-4"
-              rows={8}
-            />
+              {/* NID */}
+              <label className="label">NID No:</label>
 
-            {errors.pickupInstruction && (
-              <p className="text-red-500 mt-1">
-                Pickup Instruction is required
-              </p>
-            )}
-          </fieldset>
+              <input
+                type="number"
+                {...register("nid", {
+                  required: true,
+                })}
+                placeholder="NID No"
+                className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
+
+              {errors.nid && (
+                <p className="text-red-500 mb-3">NID Number is required</p>
+              )}
+
+              {/* Phone */}
+              <label className="label">Phone No:</label>
+
+              <input
+                type="tel"
+                {...register("phone", {
+                  required: true,
+                })}
+                placeholder="Phone No"
+                className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
+
+              {errors.phone && (
+                <p className="text-red-500 mb-3">Phone Number is required</p>
+              )}
+
+              {/* Bike Model */}
+              <label className="label">Bike Brand, Model and Year:</label>
+
+              <input
+                type="text"
+                {...register("bikeModel", {
+                  required: true,
+                })}
+                placeholder="Bike Brand, Model and Year"
+                className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
+
+              {errors.bikeModel && (
+                <p className="text-red-500 mb-3">
+                  Bike information is required
+                </p>
+              )}
+
+              {/* Bike Registration */}
+              <label className="label">Bike Registration Number:</label>
+
+              <input
+                type="number"
+                {...register("bikeRegistration", {
+                  required: true,
+                })}
+                placeholder="Bike Registration Number"
+                className="input w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
+
+              {errors.bikeRegistration && (
+                <p className="text-red-500 mb-3">
+                  Bike Registration Number is required
+                </p>
+              )}
+
+              {/* About */}
+              <label className="label">Tell Us About Yourself:</label>
+
+              <textarea
+                {...register("aboutYourself", {
+                  required: true,
+                })}
+                placeholder="Tell us about yourself"
+                rows="4"
+                className="textarea w-full mb-2 mt-2 border-2 bg-[var(--color-form-neutral-input)] border-primary rounded-2xl px-4 py-3"
+              />
+
+              {errors.aboutYourself && (
+                <p className="text-red-500 mb-3">
+                  Please tell us about yourself
+                </p>
+              )}
+            </fieldset>
+
+            <button
+              type="submit"
+              className="btn w-full bg-primary mt-6  sm:w-full rounded-2xl Phone No"
+            >
+              Submit
+            </button>
+          </form>
         </div>
 
-        <button type="submit" className="btn bg-primary mt-6 w-full sm:w-auto">
-          Proceed to Confirm Booking
-        </button>
-      </form>
+        {/* RIGHT - IMAGE */}
+        <div className="w-full flex justify-center lg:order-2 order-1 lg:justify-start lg:sticky lg:top-10">
+          <img
+            src={agent_pending}
+            alt="agent-pending"
+            className="w-full max-w-md lg:max-w-lg h-auto object-contain"
+          />
+        </div>
+      </div>
     </div>
   );
 };

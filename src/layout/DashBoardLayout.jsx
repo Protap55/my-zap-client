@@ -3,6 +3,7 @@ import { Link, NavLink, Outlet } from "react-router";
 import DashboardLogo from "../Components/Logo/DashboardLogo";
 import { MdWorkHistory } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
+import { RiEBike2Fill } from "react-icons/ri";
 
 const DashBoardLayout = () => {
   return (
@@ -112,6 +113,24 @@ const DashBoardLayout = () => {
                   <span className="is-drawer-close:hidden">
                     Payment History
                   </span>
+                </NavLink>
+              </li>
+              {/* rider */}
+              <li>
+                <NavLink
+                  to="/dashboard/approve-riders"
+                  className={({ isActive }) =>
+                    `${
+                      isActive
+                        ? "text-blue bg-primary border px-2 py-1 rounded"
+                        : "text-black"
+                    } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                  }
+                  data-tip="Approve riders"
+                >
+                  {/* rider icon */}
+                  <RiEBike2Fill />
+                  <span className="is-drawer-close:hidden">Approve riders</span>
                 </NavLink>
               </li>
               {/* List item */}

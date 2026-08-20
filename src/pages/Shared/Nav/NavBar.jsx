@@ -71,6 +71,18 @@ const NavBar = () => {
               Send Parcel
             </NavLink>
           </li>
+          <li>
+            <NavLink
+              className={({ isActive }) =>
+                isActive
+                  ? "text-blue bg-primary border px-2 py-1 rounded"
+                  : "text-black"
+              }
+              to="/rider"
+            >
+              Be a Rider
+            </NavLink>
+          </li>
         </>
       ) : (
         <>
@@ -225,7 +237,7 @@ const NavBar = () => {
 
         {/* Right extra buttons */}
         <div className="flex items-center gap-2">
-          <Link to="/rider" className="btn bg-primary hidden sm:flex">
+          <Link to="/be-A-Rider" className="btn bg-primary hidden sm:flex">
             Be a Rider
           </Link>
 
