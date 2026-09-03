@@ -4,8 +4,11 @@ import DashboardLogo from "../Components/Logo/DashboardLogo";
 import { MdWorkHistory } from "react-icons/md";
 import { AiFillProduct } from "react-icons/ai";
 import { RiEBike2Fill } from "react-icons/ri";
+import { FaUsers } from "react-icons/fa";
+import useRole from "../hooks/useRole";
 
 const DashBoardLayout = () => {
+  const { role } = useRole();
   return (
     <div>
       <div className="drawer lg:drawer-open max-w-7xl mx-auto">
@@ -115,24 +118,51 @@ const DashBoardLayout = () => {
                   </span>
                 </NavLink>
               </li>
-              {/* rider */}
-              <li>
-                <NavLink
-                  to="/dashboard/approve-riders"
-                  className={({ isActive }) =>
-                    `${
-                      isActive
-                        ? "text-blue bg-primary border px-2 py-1 rounded"
-                        : "text-black"
-                    } is-drawer-close:tooltip is-drawer-close:tooltip-right`
-                  }
-                  data-tip="Approve riders"
-                >
-                  {/* rider icon */}
-                  <RiEBike2Fill />
-                  <span className="is-drawer-close:hidden">Approve riders</span>
-                </NavLink>
-              </li>
+              {role === "admin" && (
+                <>
+                  {/* rider */}
+                  <li>
+                    <NavLink
+                      to="/dashboard/approve-riders"
+                      className={({ isActive }) =>
+                        `${
+                          isActive
+                            ? "text-blue bg-primary border px-2 py-1 rounded"
+                            : "text-black"
+                        } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                      }
+                      data-tip="Approve riders"
+                    >
+                      {/* rider icon */}
+                      <RiEBike2Fill />
+                      <span className="is-drawer-close:hidden">
+                        Approve riders
+                      </span>
+                    </NavLink>
+                  </li>
+
+                  {/* users management */}
+                  <li>
+                    <NavLink
+                      to="/dashboard/users-Management"
+                      className={({ isActive }) =>
+                        `${
+                          isActive
+                            ? "text-blue bg-primary border px-2 py-1 rounded"
+                            : "text-black"
+                        } is-drawer-close:tooltip is-drawer-close:tooltip-right`
+                      }
+                      data-tip="Users management"
+                    >
+                      {/* users icon */}
+                      <FaUsers />
+                      <span className="is-drawer-close:hidden">
+                        Users management
+                      </span>
+                    </NavLink>
+                  </li>
+                </>
+              )}
               {/* List item */}
               <li>
                 <button

@@ -2,13 +2,12 @@ import React from "react";
 import { useForm, useWatch } from "react-hook-form";
 import Swal from "sweetalert2";
 import useAxiosSecure from "../../hooks/useAxiosSecure";
-import useAuth from "../../hooks/useAuth";
 import { useLoaderData } from "react-router";
 import agent_pending from "../../assets/agent-pending.png";
 
 const Rider = () => {
   const axiosSecure = useAxiosSecure();
-  const { user } = useAuth();
+
   const {
     register,
     handleSubmit,
@@ -35,7 +34,6 @@ const Rider = () => {
   const detectDistricts = districts.map((item) => item.district);
 
   const handleRiderApplication = (data) => {
-    console.log("RIDER DATA:", data);
     axiosSecure.post("/riders", data).then((res) => {
       if (res.data.insertedId) {
         Swal.fire({

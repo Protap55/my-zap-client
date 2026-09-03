@@ -5,6 +5,7 @@ import useAuth from "../../../hooks/useAuth";
 import SocialLogin from "../SocialLogin/SocialLogin";
 import axios from "axios";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import Swal from "sweetalert2";
 
 const Register = () => {
   const {
@@ -61,6 +62,13 @@ const Register = () => {
 
           updateUserProfile(userProfile)
             .then(() => {
+              Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "User created",
+                showConfirmButton: false,
+                timer: 3500,
+              });
               console.log("Profile update");
               navigate(location.state || "/");
             })
@@ -69,7 +77,7 @@ const Register = () => {
             });
         })
         .catch((error) => {
-          console.log(error);
+          console.log("ImgBB Error:", error.response?.data);
         });
     });
   };
